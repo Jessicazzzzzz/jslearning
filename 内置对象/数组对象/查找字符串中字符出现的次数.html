@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Title</title>
+    <script>
+        let str = 'abcoefoxuzzopp';
+        let count = 0;
+        let char = 'o';
+        let change = str.indexOf(char);
+        let newStr = [];
+           while(change!==-1){
+              count++;
+               newStr.push(change);
+               change = str.indexOf(char,change+1);
+           }
+
+        console.log(count);
+        console.log('o 总共出现了'+newStr.length+'次');
+       for (let i = 0;i<newStr.length;i++){
+           console.log(newStr[i]);
+       }
+
+
+
+    </script>
+</head>
+<body>
+
+</body>
+</html>

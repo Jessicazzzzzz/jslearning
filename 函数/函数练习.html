@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Title</title>
+    <script>
+        //实现对任意数组的反转
+        function reverseArray(arr){
+            var newArr = [];
+            for (var i = 0; i < arr.length; i++) {
+                newArr[i] = arr[arr.length-1-i];
+            }
+            return newArr;
+
+        }
+        var arr = [2,4,6,7];
+       var newArr =  reverseArray(arr);
+        console.log(newArr);
+        console.log(reverseArray(['red','pink','blue']));
+
+        //冒泡排序
+        function  bubbleSort(arr){
+            var temp = 0;
+            for (var i = 0;i <arr.length-1;i++){
+                for(var j = 0;j<arr.length-1-i;j++){
+                    if(arr[j]>arr[j+1]){
+                        temp = arr[j+1];
+                        arr[j+1] = arr[j];
+                        arr[j]= temp;
+                    }
+                }
+            }
+            return arr;
+        }
+
+        console.log(bubbleSort([3,2,1,9,10,2]));
+
+        //判断闰年,能被4 整除且不能被100整除，或者被400整除
+        function  isLoopYear(year){
+            if(((year%4 ===0)&&(year%100 !==0)) ||year%400 ===0  ){
+                return true;
+            }
+            return  false;
+        }
+        var year = 2000;
+         if(isLoopYear(year)) {
+             console.log(year+'is loop year');
+         }   else console.log(year+'is not loop year');
+
+    </script>
+</head>
+<body>
+
+</body>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Title</title>
+    <script>
+        <!--        一般来说，是用现在的总毫秒数-你输入的毫秒数，再进行日期格式化转化-->
+        function countTime(time) {
+            var current= Date.now();
+            var after = +new Date(time);
+
+           var times = (after-current)/1000;
+           var day = parseInt(times/60/60/24);
+           day = day<10?'0'+day:day;
+           var hour = parseInt(times/60/60%24);
+           hour =hour<10?'0'+hour:hour;
+           //If parseInt encounters a character that is not a numeral in the specified radix,
+            // it ignores it and all succeeding characters and
+            // returns the integer value parsed up to that point.
+            // parseInt truncates numbers to integer values.
+            // Leading and trailing spaces are allowed.
+           var min =parseInt(times/60%60);
+           min = min<10?'0'+min:min;
+           var second = parseInt(times%60);
+           second = second<10?'0'+second:second;
+           return day+'天'+hour+'时'+min+'分'+second+'秒';
+
+        }
+
+
+        console.log(countTime('2022,4,18 20:10:10'));
+    </script>
+</head>
+<body>
+
+</body>
+</html>

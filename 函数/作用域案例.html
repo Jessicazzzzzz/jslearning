@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Title</title>
+    <script>
+        function  fn(){
+            var num =123;
+            function fun(){
+                console.log(num);
+            }
+            fun();
+        }
+        var num =456;
+        fn();//123
+
+        fn1();
+        console.log(b);//10
+        console.log(c);//10
+        console.log(a);//is undefined
+        function  fn1(){
+            var a = b = c =10;//b c 是全局变量
+            //相当于var a =10; b= 10;c=10
+            //如果想要b,c都是var ，应该var a =10,b=10,c=10;
+            console.log(a);
+            console.log(b);
+            console.log(c);
+        }
+    </script>
+</head>
+<body>
+
+</body>
+</html>

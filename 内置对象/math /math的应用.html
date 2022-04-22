@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Title</title>
+    <script>
+        <!--        静态方法的调用-->
+        console.log(Math.max(10, 20));
+        //创建自己的math类
+        var myMath = {
+            PI:3.1415,
+            max:function (){
+               var m=arguments[0];
+                for(var i =1;i<arguments.length;i++){
+                    if(arguments[i]>m){
+                        m = arguments[i];
+                    }
+
+                }
+                return m;
+            }
+        }
+
+        var max = myMath.max(1,2,3,6);
+        console.log(max);
+        //random 的使用
+        function  getRandom(min,max){
+            //不加min ，就不会有min 的范围，只有max 的范围
+            return Math.floor(Math.random()*(max-min+1)+min);
+        }
+
+        console.log(getRandom(2,5));
+
+        //随机点名
+        let name = ['jess','alice','nick','jimmy'];
+        console.log(name[0]);
+        console.log(name[getRandom(0,name.length-1)]);
+    </script>
+</head>
+<body>
+
+</body>
+</html>

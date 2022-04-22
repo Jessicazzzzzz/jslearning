@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Title</title>
+    <script>
+        //输入任意两个数字的任意运算，弹出结果
+        function  getCal(num1,num2,operator){
+            switch (operator){
+                case '*':
+                    return num1*num2;
+                    case '+':
+                        return  num1+num2;
+                case '-':
+                    return num1-num2;
+                case '/':
+                    if(num2 === 0 ){
+                        console.log('除数不可为0');
+                       return ;
+                    }
+                    return  num1/num2;
+            }
+        }
+        var res = getCal(2,0,'/');
+        console.log(res)
+    </script>
+</head>
+<body>
+
+</body>
+</html>

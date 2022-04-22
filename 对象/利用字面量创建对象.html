@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Title</title>
+    <script>
+        //字面量创建对象
+        //除了数字，其它的都需要加"，不然就是reference error
+
+        var dog ={
+            name: 'coco',
+            type: 'alsijia',
+            age : 5,
+            color:'brown',
+            cry: function (){
+                console.log('bark');
+            },
+            film: function (){
+                console.log('watch movie');
+            }
+        }
+        console.log(dog.age);
+        console.log(dog.name);
+        //也可以是这种方式引用属性
+        console.log(dog['color']);
+        dog.cry();
+    </script>
+</head>
+<body>
+
+</body>
+</html>

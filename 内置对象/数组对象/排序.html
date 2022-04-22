@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Title</title>
+
+    <script>
+        //反转数组
+        let arr = ['a','b','c'];
+        console.log(arr.reverse());
+        //排序 ,它是根据字符unicode 的顺序排的，
+        //所以，如果11，2，就会将11排在2的前面，这就不是我们想要的效果
+        //可以用比较函数，如果<0,前面的元素就会排在前面，>0就排在后面
+        let arr1 = [36,34,2,5,6,6];
+        arr1.sort();
+        console.log(arr1);//[1, 2, 34, 5, 6]
+        arr1.sort(function (a,b){
+            return a-b;//升序
+        });
+        console.log(arr1);
+
+        console.log(arr1.indexOf(36));//从前面开始查找，返回第一个出现的位置
+        console.log(arr1.lastIndexOf(6));//从后面开始查找，返回第一个出现的位置
+
+
+    </script>
+</head>
+<body>
+
+</body>
+</html>

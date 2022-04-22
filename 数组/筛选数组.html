@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Title</title>
+    <script>
+        // 将数组【2，0，6，1，77，0，52，0，25，7】中大于等于10 的元素选出来，放入新数组
+        //第一种方法是通过一个变量去确定下标
+        //第二种方法是直接通过arr.length的自动检测来增加
+        var arr = [2, 0, 6, 1, 77, 0, 52, 0, 25, 7];
+        var newArr = [];
+        var newArr2 = [];
+
+        var j = 0;
+        for (var i = 0; i < arr.length ; i++) {
+            if(arr[i] >= 10){
+                newArr[j] = arr[i];
+                //这个会自动增加,一开始是0 ，放进去一个数据之后，就变成一了，会自动变化
+                newArr2[newArr2.length] = arr[i];
+                j++;
+            }
+        }
+        console.log(newArr);
+        console.log(newArr2);
+    </script>
+</head>
+<body>
+
+</body>
+</html>

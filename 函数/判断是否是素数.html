@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Title</title>
+    <script>
+        //判断是否是素数，即只能被自己和1整除的数
+        //只要判断这个数/这个数的一半的余数，如果没有余数，表示除的通，
+        //那么就不是素数
+        function  isPrimer (num1){
+            for (var i = 2; i <= num1/2; i++) {
+                if(num1 % i ===0){
+                     return false;
+                }
+            }return true;
+
+        }
+        var num = 1;
+       var flag= isPrimer(num);
+        console.log(flag);
+        if(flag === false ){
+            console.log(num+'不是素数');
+        }else {
+            console.log(num+'是素数');
+        }
+    </script>
+</head>
+<body>
+
+</body>
+</html>
