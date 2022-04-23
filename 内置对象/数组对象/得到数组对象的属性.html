@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Title</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        table caption {
+            margin: 10px auto;
+        }
+
+        table {
+            text-align: center;
+            border-collapse: collapse;
+            margin: 0 auto;
+
+        }
+
+        table thead th {
+            font-weight: 700;
+
+        }
+
+        table th, td {
+            padding: 0 20px;
+            border: 1px solid black;
+            height: 40px;
+            cursor: pointer;
+
+        }
+        table thead tr:nth-child(1){
+            background-color: #ddd;
+        }
+        table tbody tr:hover{
+            background-color: #eee;
+        }
+        
+
+
+    </style>
+</head>
+<body>
+<!--需要先将固定格式写出来，再将需要循环的方式写出来渲染即可-->
+<script>
+    let students = [
+        {name: '小明', age: 18, gender: '男', hometown: '山东省'},
+        {name: '小红', age: 18, gender: '女', hometown: '山东省'},
+        {name: '小刚', age: 18, gender: '男', hometown: '山东省'},
+        {name: '小丽', age: 18, gender: '女', hometown: '山东省'},
+        {name: '小丽', age: 18, gender: '女', hometown: '山东省'},
+    ]
+
+
+    document.write(`
+    <table>
+    <caption>
+        学生列表
+    </caption>
+    <thead>
+    <tr>
+        <th>序号</th>
+        <th>姓名</th>
+        <th>年龄</th>
+        <th>性别</th>
+        <th>家乡</th>
+    </tr>
+    </thead>
+
+    `)
+    for(let i = 0;i<students.length;i++){
+
+
+
+            document.write(`
+            <tbody>
+            <tr>
+            <td>${i+1}</td>
+            <td>${students[i].name}</td>
+            <td>${students[i].age}</td>
+            <td>${students[i].gender}</td>
+            <td>${students[i].hometown}</td>
+            </tr>
+            </tbody>
+            `)
+
+    }
+    document.write(`</table>`)
+
+
+
+
+
+
+
+
+
+
+
+
+</script>
+</body>
+</html>
