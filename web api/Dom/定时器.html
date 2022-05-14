@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Title</title>
+</head>
+<body>
+<script>
+<!--用匿名函数的方式创建-->
+ let time=setInterval(function (){
+     console.log('间歇函数')
+ },1000)
+function setAutoTime(){
+    console.log('make it')
+}
+let time1 = setInterval(setAutoTime,1000)
+//返回值是个数值
+clearInterval(time1)
+clearInterval(time)
+</script>
+</body>
+</html>

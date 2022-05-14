@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Title</title>
+    <style>
+        .bgc {
+            background-color: pink;
+        }
+    </style>
+</head>
+<body>
+<button>1</button>
+<button>2</button>
+<button>3</button>
+<button>4</button>
+<button>5</button>
+<script>
+
+let btns = document.querySelectorAll('button')
+// for(let i = 0;i<btns.length;i++){
+//     btns[i].addEventListener('click',function (){
+//         //先清除所有的状态，再添加自己的状态
+//         for(let j = 0;j<btns.length;j++){
+//             btns[j].classList.remove('bgc')
+//         }
+//         this.classList.add('bgc')
+//     })
+// }
+for (let i = 0;i<btns.length;i++){
+
+
+    btns[i].addEventListener('click',function (){
+        let find = document.querySelector('.bgc')
+        console.log(typeof find)//object
+        if(find !==null){
+            //不需要所有的循环，只要找到它就可以了，再将它移除
+            document.querySelector('.bgc').classList.remove('bgc')
+        }
+        this.classList.add('bgc')
+    })
+}
+</script>
+</body>
+</html>

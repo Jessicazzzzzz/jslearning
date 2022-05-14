@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+
+<body>
+<input type="button" value="切换" id="btn"><br>
+<img src="images/1.jpg" width="300" id="img">
+
+<script>
+    <!--        获取需要修改的对象-->
+    let button = document.querySelector('#btn')
+    let img = document.querySelector('img')
+    //点击的时候，修改src元素
+    button.addEventListener('click', function () {
+        let num = getRandom(1, 6)
+        // console.log(num) 坐测试看是否获取random数据
+        img.src = `images/${num}.jpg`
+    })
+    //这里需要注意的是max-min+1 找到需要多少数字，
+    // min 是取的数字的最低范围
+    function getRandom(min, max) {
+        return Math.floor(Math.random() * (max - min + 1)) + min
+    }
+</script>
+</body>
+
+</html>

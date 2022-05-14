@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Title</title>
+    <style>
+        div{
+            width: 440px;
+            height: 400px;
+            background-color: pink;
+        }
+        .box {
+            width: 440px;
+            height: 400px;
+            background-color: deeppink;
+        }
+    </style>
+
+</head>
+<body>
+<div class="one"></div>
+<script>
+    let bd= document.querySelector('div')
+    //这个是如果没有就直接添加，如果有就覆盖
+    // bd.className = 'box'
+    //追加
+    let cl = bd.classList
+   cl.add('box')
+    cl.textContent =`the classList is ${cl}`
+    document.write(cl.textContent)
+//移除
+//     cl.remove('one')
+    //交替有就删除，没有就添加
+    cl.toggle('one')
+</script>
+</body>
+</html>

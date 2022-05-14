@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Title</title>
+</head>
+<body>
+<button>我已同易协议(6)</button>
+<script>
+    let countdown = document.querySelector('button')
+    countdown.disabled = true
+    let num = 6
+    function cd(){
+        countdown.textContent =`我已同易协议(${--num})`
+        if(num ===0){
+
+            clearInterval(tm)
+           countdown.disabled = false
+           countdown.textContent= '我同意该协议'
+        }
+    }
+
+              let tm=setInterval(cd,1000)
+
+</script>
+</body>
+</html>

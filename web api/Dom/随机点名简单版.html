@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Title</title>
+    <style>
+        div {
+            width: 100px;
+            height: 30px;
+            border: 1px solid green;
+            text-align: center;
+        }
+
+    </style>
+</head>
+<body>
+<div>开始点名</div>
+<button>press</button>
+<script>
+    let box = document.querySelector('div')
+    let bn = document.querySelector('button')
+    let arr = ['a', 'b', 'c', 'd']
+    //随机函数
+    function random(min, max) {
+        return Math.floor(Math.random() * (max - min + 1)) + min
+    }
+
+    bn.addEventListener('click', function () {
+        let randomNum = random(0, arr.length - 1)
+        box.innerHTML = arr[randomNum]
+        //每删除一个元素，数组的长度是减一个的
+        arr.splice(randomNum, 1)
+        //那么当数组的长度为0 的时候，就可以将button 禁用了
+        if (arr.length === 0) {
+            bn.disabled = true
+            //注意这里是将button 的内容改变，不是将div 盒子的内容改变
+            bn.innerHTML = '抽奖结束'
+        }
+    })
+</script>
+</body>
+</html>
