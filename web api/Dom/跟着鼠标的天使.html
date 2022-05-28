@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Title</title>
+    <style>
+        img {
+            /*它的上级都是static ，那么它就是相对于body定位
+            ，如果它的上级有非static ,那么它就相对于第一个非static 定位*/
+            position: absolute;
+            top:0px;
+            left: 0px;
+        }
+    </style>
+</head>
+<body>
+<img src="./images4/tianshi.gif" alt="">
+<script>
+ let img = document.querySelector('img')
+ document.addEventListener('mousemove',function (e){
+     //注意left 是横坐标，top 是纵坐标
+     img.style.left = e.pageX-40+'px'
+     img.style.top = e.pageY-40+'px'
+ })
+</script>
+</body>
+</html>

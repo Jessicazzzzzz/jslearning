@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <title>微博发布</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+
+    ul {
+      list-style: none;
+    }
+
+    .w {
+      width: 900px;
+      margin: 0 auto;
+    }
+
+    .controls textarea {
+      width: 878px;
+      height: 100px;
+      resize: none;
+      border-radius: 10px;
+      outline: none;
+      padding-left: 20px;
+      padding-top: 10px;
+      font-size: 18px;
+    }
+
+    .controls {
+      overflow: hidden;
+    }
+
+    .controls div {
+      float: right;
+    }
+
+    .controls div span {
+      color: #666;
+    }
+
+    .controls div .useCount {
+      color: red;
+    }
+
+    .controls div button {
+      width: 100px;
+      outline: none;
+      border: none;
+      background: rgb(0, 132, 255);
+      height: 30px;
+      cursor: pointer;
+      color: #fff;
+      font: bold 14px '宋体';
+      transition: all 0.5s;
+    }
+
+    .controls div button:hover {
+      background: rgb(0, 225, 255);
+    }
+
+    .controls div button:disabled {
+      background: rgba(0, 225, 255, 0.5);
+    }
+
+    .contentList {
+      margin-top: 50px;
+    }
+
+    .contentList li {
+      padding: 20px 0;
+      border-bottom: 1px dashed #ccc;
+      position: relative;
+    }
+
+    .contentList li .info {
+      position: relative;
+    }
+
+    .contentList li .info span {
+      position: absolute;
+      top: 15px;
+      left: 100px;
+      font: bold 16px '宋体';
+    }
+
+    .contentList li .info p {
+      position: absolute;
+      top: 40px;
+      left: 100px;
+      color: #aaa;
+      font-size: 12px;
+    }
+
+    .contentList img {
+      width: 80px;
+      border-radius: 50%;
+    }
+
+    .contentList li .content {
+      padding-left: 100px;
+      color: #666;
+      word-break: break-all;
+    }
+
+    .contentList li .the_del {
+      position: absolute;
+      right: 0;
+      top: 0;
+      font-size: 28px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="w">
+    <!-- 操作的界面 -->
+    <div class="controls">
+      <img src="./images/9.6/tip.png" alt="" /><br />
+      <!-- maxlength 可以用来限制表单输入的内容长度 -->
+      <textarea placeholder="说点什么吧..." id="area" cols="30" rows="10" maxlength="200"></textarea>
+      <div>
+        <span class="useCount" id="useCount">0</span>
+        <span>/</span>
+        <span>200</span>
+        <button id="send">发布</button>
+      </div>
+    </div>
+    <!-- 微博内容列表 -->
+    <div class="contentList">
+      <ul id="list"></ul>
+    </div>
+  </div>
+
+  <!-- 添加了hidden属性元素会直接隐藏掉 -->
+  <li hidden>
+    <div class="info">
+      <img class="userpic" src="./images/9.6/03.jpg" />
+      <span class="username">死数据:百里守约</span>
+      <p class="send-time">死数据:发布于 2020年12月05日 00:07:54</p>
+    </div>
+    <div class="content">死数据:111</div>
+    <span class="the_del">X</span>
+  </li>
+
+  <script>
+    // maxlength 是一个表单属性, 作用是给表单设置一个最大长度
+
+    // 模拟数据
+    let dataArr = [
+      { uname: '司马懿', imgSrc: './images/9.5/01.jpg' },
+      { uname: '女娲', imgSrc: './images/9.5/02.jpg' },
+      { uname: '百里守约', imgSrc: './images/9.5/03.jpg' },
+      { uname: '亚瑟', imgSrc: './images/9.5/04.jpg' },
+      { uname: '虞姬', imgSrc: './images/9.5/05.jpg' },
+      { uname: '张良', imgSrc: './images/9.5/06.jpg' },
+      { uname: '安其拉', imgSrc: './images/9.5/07.jpg' },
+      { uname: '李白', imgSrc: './images/9.5/08.jpg' },
+      { uname: '阿珂', imgSrc: './images/9.5/09.jpg' },
+      { uname: '墨子', imgSrc: './images/9.5/10.jpg' },
+      { uname: '鲁班', imgSrc: './images/9.5/11.jpg' },
+      { uname: '嬴政', imgSrc: './images/9.5/12.jpg' },
+      { uname: '孙膑', imgSrc: './images/9.5/13.jpg' },
+      { uname: '周瑜', imgSrc: './images/9.5/14.jpg' },
+      { uname: '老夫子', imgSrc: './images/9.5/15.jpg' },
+      { uname: '狄仁杰', imgSrc: './images/9.5/16.jpg' },
+      { uname: '扁鹊', imgSrc: './images/9.5/17.jpg' },
+      { uname: '马可波罗', imgSrc: './images/9.5/18.jpg' },
+      { uname: '露娜', imgSrc: './images/9.5/19.jpg' },
+      { uname: '孙悟空', imgSrc: './images/9.5/20.jpg' },
+      { uname: '黄忠', imgSrc: './images/9.5/21.jpg' },
+      { uname: '百里玄策', imgSrc: './images/9.5/22.jpg' },
+    ]
+    let area = document.querySelector('#area')
+    let usecount = document.querySelector('#useCount')
+    let btn= document.querySelector('#send')
+    let list = document.querySelector('#list')
+    let num = 0
+    area.addEventListener('input',function (e){
+      //想要获得内容，应该用value的属性
+      usecount.innerHTML =  this.value.length
+
+
+    })
+    //还是用keydown会多个回车触发的太早了
+    area.addEventListener('keyup',function (e){
+      if(e.key === 'Enter'){
+        //可以直接调用这个点击事件
+        btn.click()
+
+      }
+    })
+
+    btn.addEventListener('click',press)
+    function press(){
+      //首先判空， trim（）函数是trim 字符串的空白，如回车，空格等
+      if(area.value.trim() ===''){
+        area.value = ''
+        usecount.innerHTML = 0
+         return alert('内容不能为空')
+      }
+      let people = getRandom(0,dataArr.length-1)
+      let li = document.createElement('li')
+        //不需要写这么复杂，可以直接用Date().toLocaleString()函数
+        // let now = new Date()
+        // let year = now.getFullYear()
+        // let month = now.getMonth()+1
+        // let date = now.getDate()
+        // let hour = now.getHours()
+        // let mins = now.getMinutes()
+        // let sec = now.getSeconds()
+      li.innerHTML = `
+    <div class="info">
+      <img class="userpic" src=${dataArr[people].imgSrc} />
+      <span class="username">${dataArr[people].uname}</span>
+      <p>${new Date().toLocaleString()}</p>
+    </div>
+    <div class="content">${area.value}</div>
+    <span class="the_del">X</span>
+  `
+     // 1. 这个删除是在发布后的，所以需要在发布中调用
+     //2. 对于删除的绑定，可以考虑成每次创建一个l，就可以绑定一个删除事件
+     // 这样的效果会比用for循环效果好
+     let del =li.querySelector('.the_del')
+      del.addEventListener('click',function (){
+        //删除操作，del 在li中，点击del 删除li ,也就是要找li的父元素，父元素.removeChild()
+        this.parentNode.parentNode.removeChild(li)
+      //  list.removeChild(li)
+      })
+      // list.appendChild(li)
+      list.insertBefore(li,list.children[0])
+      //重置
+      area.value = ''
+      usecount.innerHTML = 0
+
+    }
+    function  getRandom(min,max){
+      return Math.floor(Math.random()*(max-min+1)+min)
+    }
+
+
+
+  </script>
+</body>
+
+</html>

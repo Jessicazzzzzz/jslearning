@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Title</title>
+</head>
+<body>
+<script>
+<!--    三种方式实现时间戳-->
+    //第一种方式，先new 一个对象，再通过getTime()的方法来获取时间戳
+    let date = new Date()
+console.log(date.getTime())
+//第二种方式,隐式转换，其实就是将当前的字符串转换成数字
+let date1 = +new Date()
+//最新的，它跟上面的最大的区别就是，它只能得到当前的时间戳
+let date2 = Date.now()
+console.log(date1)
+console.log(date2)
+</script>
+</body>
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Title</title>
+    <style>
+        div {
+            width: 300px;
+            height: 30px;
+            background-color: pink;
+        }
+    </style>
+</head>
+<body>
+<div></div>
+<script>
+<!--    在页面中自动显示时间的跳动-->
+
+let arry = ['星期日','星期一','星期二','星期三','星期四','星期五','星期六']
+
+let div = document.querySelector('div')
+//先调用一下函数，可以解决一打开页面有空白的问题
+//因为setInterval 函数是需要1s 之后才开始调用gettime 函数的
+gettime()
+setInterval(gettime
+,1000)
+    function gettime(){
+    let date = new Date()
+    let year = date.getFullYear()
+    let month = date.getMonth()+1
+    let d = date.getDate()
+    let hour = date.getHours()
+    let mins = date.getMinutes()
+    mins = mins>10?mins:('0'+mins)
+    let sec = date.getSeconds()
+    let day = date.getDay()
+    //对于星期的获取话，我们可以将它们变成数组的方式来进行获得
+    div.innerHTML = `今天是 ${year}年${month}月${d}号 ${hour}:${mins}:${sec} ${arry[day]}`
+
+}
+</script>
+</body>
+</html>

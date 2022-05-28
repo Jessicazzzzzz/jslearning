@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Title</title>
+</head>
+<body>
+<ul>
+    <li>我是内容</li>
+</ul>
+<script>
+<!--    先获取需要克隆节点-->
+    let ul = document.querySelector('ul')
+//   默认是false ，那么就是只克隆自己；如果是tru，那么就会克隆它的后代
+let newUl = ul.cloneNode(true)
+//只有一个body，所以不需要获取body 元素
+document.body.appendChild(newUl)
+</script>
+</body>
+</html>

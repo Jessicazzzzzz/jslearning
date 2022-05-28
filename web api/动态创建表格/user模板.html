@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/user.css">
+</head>
+
+<body>
+<h1>新增学员</h1>
+<div class="info">
+    姓名：<input type="text" class="uname">
+    年龄：<input type="text" class="age">
+    性别: <select name="gender" id="gender" class="gender">
+    <option value="男">男</option>
+    <option value="女">女</option>
+</select>
+    学号：<input type="text" class="stuId">
+    薪资：<input type="text" class="salary">
+    就业城市：<select name="city" id="" class="city">
+    <option value="北京">北京</option>
+    <option value="上海">上海</option>
+    <option value="广州">广州</option>
+    <option value="深圳">深圳</option>
+    <option value="曹县">曹县</option>
+
+</select>
+    <button class="add">录入</button>
+</div>
+
+<h1>就业榜</h1>
+<table>
+    <thead>
+    <tr>
+        <th>学号</th>
+        <th>姓名</th>
+        <th>年龄</th>
+        <th>性别</th>
+        <th>薪资</th>
+        <th>就业城市</th>
+        <th>操作</th>
+    </tr>
+    </thead>
+    <tbody>
+    <!--      <tr>-->
+    <!--        <td>1001</td>-->
+    <!--        <td>欧阳霸天</td>-->
+    <!--        <td>19</td>-->
+    <!--        <td>男</td>-->
+
+    <!--        <td>15000</td>-->
+    <!--        <td>上海</td>-->
+    <!--        <td>-->
+    <!--          <a href="javascript:">删除</a>-->
+    <!--        </td>-->
+    <!--      </tr>-->
+
+
+    </tbody>
+</table>
+<script>
+    //  1. 准备好数据后端的数据
+    let arr = [
+        {stuId: 1001, uname: '欧阳霸天', age: 19, gender: '男', salary: '20000', city: '上海'},
+        {stuId: 1002, uname: '令狐霸天', age: 29, gender: '男', salary: '30000', city: '北京'},
+        {stuId: 1003, uname: '诸葛霸天', age: 39, gender: '男', salary: '2000', city: '北京'},
+    ]
+
+    let tbody = document.querySelector('tbody')
+
+    function render1() {
+
+        for (let i = 0; i < arr.length; i++) {
+            let tr = document.createElement('tr')
+            let td1 = document.createElement('td')
+            let td2 = document.createElement('td')
+            let td3 = document.createElement('td')
+            let td4 = document.createElement('td')
+            let td5 = document.createElement('td')
+            let td6 = document.createElement('td')
+            let td7 = document.createElement('td')
+            let a = document.createElement('a')
+            td1.innerHTML = arr[i].stuId
+            td2.innerHTML = arr[i].uname
+            td3.innerHTML = arr[i].age
+            td4.innerHTML = arr[i].gender
+            td5.innerHTML = arr[i].salary
+            td6.innerHTML = arr[i].city
+            a.href = "javascript:"
+            a.innerHTML = '删除'
+            td7.appendChild(a)
+            tbody.appendChild(tr)
+            tr.appendChild(td1)
+            tr.appendChild(td2)
+            tr.appendChild(td3)
+            tr.appendChild(td4)
+            tr.appendChild(td5)
+            tr.appendChild(td6)
+            tr.appendChild(td7)
+        }
+    }
+
+    function render() {
+        //每次重新渲染的时候都是要将旧的数据干掉
+        tbody.innerHTML = null;
+        for (let i = 0; i < arr.length; i++) {
+            let tr = document.createElement('tr')
+            tr.innerHTML = `
+
+        <td>${arr[i].stuId}</td>
+        <td>${arr[i].uname}</td>
+        <td>${arr[i].age}</td>
+        <td>${arr[i].gender}</td>
+
+        <td>${arr[i].salary}</td>
+        <td>${arr[i].city}</td>
+        <td>
+          <a href="javascript:" id="${i}">删除</a>
+        </td>
+
+      `
+            //每次追加的时候，都是在后面追加，那么我们就需要将旧的数据干掉
+            //怎么干掉呢？就是将tbody的innerHtml = null
+            tbody.appendChild(tr)
+            //复原所有的表单数据
+            uname.value = age.value = salary.value = ''
+            gender.value = '男'
+            city.value = '北京'
+
+        }
+    }
+
+
+    let add = document.querySelector('.add')
+    let uname =document.querySelector('.uname')
+    let age =document.querySelector('.age')
+    let gender =document.querySelector('.gender')
+    let salary =document.querySelector('.salary')
+    let city =document.querySelector('.city')
+    add.addEventListener('click', function () {
+        //追加到数组中去
+        arr.push({
+                //不能写成arr【arr.length-1].stuId++,这个会改变最后一个元素本身的值
+                stuId:
+                arr[arr.length-1].stuId+1,
+                uname: uname.value,
+                age: age.value,
+                gender: gender.value,
+                salary: salary.value,
+                city: city.value
+            }
+        )
+        render()
+    })
+//    事件委托删除操作
+    tbody.addEventListener('click',function (e){
+        console.log(e.target.tagName)
+        if(e.target.tagName === 'A'){
+        //    删除数组里的数据
+        //    arr.splice(从哪里开始删，删几个)
+            /*应该获取a标签的索引号，这样就知道你点击的是哪个a
+            * 所以我们可以给a 增加id*/
+            console.log(e.target.id)
+            arr.splice(e.target.id,1)
+            //重新渲染
+            render()
+        }
+    })
+
+
+
+</script>
+</body>
+
+</html>

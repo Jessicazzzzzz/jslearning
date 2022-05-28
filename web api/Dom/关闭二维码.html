@@ -45,13 +45,17 @@
     </div>
     <script>
 let close = document.querySelector('.close_btn')
-let div = document.querySelector('div')
+// let div = document.querySelector('div')
+// close.addEventListener('click',function (){
+//     div.classList.add('dispear')
+//     //另一种写法
+//     // div.style.display = 'none'
+// })
+//重构 ，通过节点查找来添加属性
 close.addEventListener('click',function (){
-    div.classList.add('dispear')
-    //另一种写法
-    // div.style.display = 'none'
+    // 找到它的父亲，添加属性即可
+    this.parentNode.classList.add('dispear')
 })
-
     </script>
 </body>
 

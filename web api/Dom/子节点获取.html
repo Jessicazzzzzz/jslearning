@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Title</title>
+</head>
+<body>
+<button>change</button>
+<ul>
+    <li>hell0</li>
+    <li>hell0</li>
+    <li>hell0</li>
+    <li>hell0</li>
+    <li>hell0</li>
+    <li>hell0</li>
+</ul>
+<script>
+    let btn = document.querySelector('button')
+    let ul = document.querySelector('ul')
+    btn.addEventListener('click',function (){
+        //可以通过ul 来获取它的子元素，不要用childNode ，它会获取包括回车符-text,那么循环的时候就容易出错
+        //获取到ul 的所有子元素，当点击的时候所有子元素都要变色
+        //可以通过伪数组的方式来操作
+        for(let i = 0;i<ul.children.length;i++){
+            ul.children[i].style.color = 'red'
+        }
+    })
+  ul.children[0].nextElementSibling.style.color = 'pink'
+  ul.children[1].previousElementSibling.style.color = 'blue'
+  //  先创建
+  let p1 =  document.createElement('p')
+    p1.innerHTML = 'hi'
+    //再追加
+    ul.appendChild(p1)
+    ul.insertBefore(p1,ul.children[0])
+
+</script>
+
+</body>
+</html>
