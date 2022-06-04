@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Title</title>
+    <style>
+        body {
+            height: 3000px;
+        }
+        div {
+            width: 150px;
+            height: 150px;
+            background-color: pink;
+            overflow: auto;
+        }
+    </style>
+</head>
+<body>
+<div>
+    我是内容
+    我是内容
+    我是内容
+    我是内容
+    我是内容
+    我是内容
+    我是内容
+    我是内容
+    我是内容
+    我是内容
+    我是内容
+    我是内容
+    我是内容
+    我是内容
+    我是内容
+    我是内容
+    我是内容
+    我是内容
+    我是内容
+    我是内容
+    我是内容
+    我是内容
+</div>
+<script>
+    let div =document.querySelector('div')
+    console.log(div.scrollWidth)//它是指的内容的宽度，不是盒子的宽度 135 没有px单位
+    console.log(div.scrollHeight)//它是指的内容的高度，不是盒子的高度 248 不带单位
+    //被卷去的位置
+   div.addEventListener('scroll',function (){
+       console.log(this.scrollTop)//可以显示出被卷去的距离
+   })
+    window.addEventListener('scroll',function (){
+        //documentElement 是获取的整个html 的内容，所以这个就是获取页面拉动的距离
+        console.log(document.documentElement.scrollTop)
+    })
+    //offset 获取的是盒子的宽高，如果有padding ,border 都会算进去
+    console.log(div.offsetHeight)//150
+    console.log(div.offsetWidth)//150
+    //这个获取的位置，参照它定位的父级，如果没有定位的父级，就已文档左上角为准
+    console.log(div.offsetTop)//8 因为浏览器默认padding ,所以是8px
+    console.log(div.offsetLeft)//8 因为浏览器默认padding ,所以是8px
+    console.log(div.clientHeight)//150
+    console.log(div.clientWidth)//135 可视区域，但是不包括边框，所以比div 的height小一点
+</script>
+</body>
+</html>
