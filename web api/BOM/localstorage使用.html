@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    /*存储数据*/
+    localStorage.setItem('name','jess')
+    let obj = {
+        uname:'jess',
+        age :17,
+        address:'beijing'
+    }
+    /*获取数据*/
+    localStorage.setItem('obj',obj)//只能得到obj obj ,无法得到具体的数据
+    localStorage.setItem('obj1',JSON.stringify(obj))
+    console.log(localStorage.getItem('name'))
+    /*存储的是json类型的字符串，想要把它转换成正确的类型，需要用JASON.parse转化成对象类型*/
+    console.log(JSON.parse(localStorage.getItem('obj1')))
+    /*删除数据*/
+    // localStorage.removeItem('name')
+</script>
+</body>
+</html>

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Title</title>
+</head>
+<body>
+<div></div>
+<script>
+    let div = document.querySelector('div')
+    function times(){
+        div.innerHTML = new Date().toLocaleString()
+        /*正常是一次调用就结束了，但是用了递归的方式，不断的调用，就出现了setInterval 这种情况*/
+        setTimeout(times,1000)
+    }
+    times()
+</script>
+</body>
+</html>

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Title</title>
+</head>
+<body>
+<a href="https://www.google.com">支付成功，n秒之后跳转</a>
+<script>
+    let a  = document.querySelector('a')
+    let sec = 5
+    function autogoback(){
+        a.innerHTML = `支付成功，${sec--}秒之后跳转`
+        if(sec === 0){
+            location.href = 'https://www.google.com'
+            clearInterval(time)
+        }
+    }
+    let time  = setInterval(autogoback,1000)
+
+</script>
+</body>
+</html>

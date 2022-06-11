@@ -182,10 +182,15 @@
     let btn= document.querySelector('#send')
     let list = document.querySelector('#list')
     let num = 0
+    let ul  = document.querySelector('ul')
 
 
-
-
+/*获取数据*/
+    // let mydata =JSON.parse( localStorage.getItem('mydata')) ||[]
+    // for (let i = 0;i<mydata.length;i++){
+    //   render()
+    // }
+render()
     area.addEventListener('input',function (e){
       //想要获得内容，应该用value的属性
       usecount.innerHTML =  this.value.length
@@ -211,48 +216,55 @@
          return alert('内容不能为空')
       }
       let people = getRandom(0,dataArr.length-1)
-      let li = document.createElement('li')
-        //不需要写这么复杂，可以直接用Date().toLocaleString()函数
-        // let now = new Date()
-        // let year = now.getFullYear()
-        // let month = now.getMonth()+1
-        // let date = now.getDate()
-        // let hour = now.getHours()
-        // let mins = now.getMinutes()
-        // let sec = now.getSeconds()
-      li.innerHTML = `
-    <div class="info">
-      <img class="userpic" src=${dataArr[people].imgSrc} />
-      <span class="username">${dataArr[people].uname}</span>
-      <p>${new Date().toLocaleString()}</p>
-    </div>
-    <div class="content">${area.value}</div>
-    <span class="the_del">X</span>
-  `
-      localStorage.setItem('info',JSON.stringify(li.innerHTML))
-
-     // 1. 这个删除是在发布后的，所以需要在发布中调用
-     //2. 对于删除的绑定，可以考虑成每次创建一个l，就可以绑定一个删除事件
-     // 这样的效果会比用for循环效果好
-     let del =li.querySelector('.the_del')
-      del.addEventListener('click',function (){
-
-        //删除操作，del 在li中，点击del 删除li ,也就是要找li的父元素，父元素.removeChild()
-        this.parentNode.parentNode.removeChild(li)
-      //  list.removeChild(li)
+      let arr = JSON.parse(localStorage.getItem('mydata')) ||[]
+      /*应该添加具体的*/
+      arr.push({
+        imgSrc:dataArr[people].imgSrc,
+        uname:dataArr[people].uname,
+        time:new Date().toLocaleString(),
+        content:area.value,
 
       })
-      // list.appendChild(li)
-      list.insertBefore(li,list.children[0])
-      //重置
-      area.value = ''
-      usecount.innerHTML = 0
+      localStorage.setItem('mydata',JSON.stringify(arr))
+      render()
+
+
+
 
     }
     function  getRandom(min,max){
       return Math.floor(Math.random()*(max-min+1)+min)
     }
+    /*事件委托*/
+    ul.addEventListener('click',function (e){
+      if(e.target.className === 'the_del'){
+        let arr = JSON.parse(localStorage.getItem('mydata')) ||[]
 
+        arr.splice(e.target.dataset.id,1)
+        localStorage.setItem('mydata',JSON.stringify(arr))
+        render()
+      }
+    })
+function render(){
+      ul.innerHTML = ''
+  let arr = JSON.parse(localStorage.getItem('mydata')) ||[]
+  for (let i = 0;i<arr.length;i++){
+    let li = document.createElement('li')
+
+    li.innerHTML = `
+    <div class="info">
+      <img class="userpic" src=${arr[i].imgSrc} />
+      <span class="username">${arr[i].uname}</span>
+      <p>${arr[i].time}</p>
+    </div>
+    <div class="content">${arr[i].content}</div>
+    <span class="the_del" data-id = "${i}">X</span>
+  `
+    ul.insertBefore(li,ul.children[0])
+    area.value = ''
+    usecount.innerHTML = 0
+  }
+}
 
 
   </script>
