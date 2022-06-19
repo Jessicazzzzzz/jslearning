@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Title</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        .content {
+            width: 300px;
+            height: 50px;
+            margin: 50px auto;
+        }
+        textarea {
+            height: 50%;
+            line-height: 25px;
+        }
+
+        button[type=submit]{
+            float:right;
+            margin-right: 10px;
+            margin-top: 5px;
+            height: 40%;
+        }
+        .list {
+            width: 300px;
+            margin: 0 auto;
+        }
+
+        ul {
+          list-style: none;
+        }
+        ul li {
+            position: relative;
+            height: 50px;
+            margin-bottom: 3px;
+
+        }
+        ul li input{
+            float: left;
+            margin-right: 10px;
+            margin-top: 19px;
+        }
+        ul li p {
+            height: 100%;
+            line-height: 50px;
+        }
+        ul li span {
+           position: absolute;
+            right: 0;
+            top: 15px;
+            cursor: pointer;
+        }
+        .completed {
+            text-decoration: line-through;
+            background-color: lemonchiffon;
+            transition: 2s;
+        }
+
+
+        
+    </style>
+</head>
+<body>
+<div class="content">
+    <textarea name="" id="todo" cols="30" rows="1" placeholder="今天准备做什么？"></textarea>
+    <button type="submit">👌</button>
+</div>
+<div class="list">
+    <ul class="contentList">
+
+    </ul>
+</div>
+<script>
+   let todo = document.querySelector('#todo')
+   let btn = document.querySelector('button')
+   let ul = document.querySelector('.contentList')
+   todo.addEventListener('mouseenter',function (){
+       // alert(11)
+       todo.placeholder = ''
+   })
+   render()
+   todo.addEventListener('keyup',function (e){
+       if(e.key =='Enter'){
+           btn.click()
+       }
+   })
+   btn.addEventListener('click',press)
+    function press(){
+      let arr = JSON.parse(localStorage.getItem('mylist')) ||[]
+        arr.push({
+            content:todo.value
+        })
+        localStorage.setItem('mylist',JSON.stringify(arr))
+        render()
+    }
+    function render(){
+       //每次渲染，就需要清空ul
+       ul.innerHTML=''
+        //如果arr里有，就先去找到，没有就为空
+        let arr = JSON.parse(localStorage.getItem('mylist'))||[]
+        //在循环遍历，创建li 
+        for(let i = 0;i<arr.length;i++){
+            let li = document.createElement('li')
+            li.innerHTML = `
+            <input type="checkbox">
+           <p>${arr[i].content}</p>
+           <span class="the_del" data-id="${i}">x</span>
+            `
+            //每次都在ul 的第一个创建
+            ul.insertBefore(li,ul.children[0])
+            //置空表单
+            todo.value = ''
+            //添加类，如果list做了，就line-through
+            let check = document.querySelector('input[type=checkbox]')
+            let p = document.querySelector('p')
+            check.addEventListener('click',function (){
+                p.classList.toggle('completed')
+            })
+        }
+
+    }
+    //冒泡事件来找到需要删除的对象
+    ul.addEventListener('click',function (e){
+        //找到the_del的类名，删除数组中的这个item
+        if(e.target.className ==='the_del'){
+            let arr = JSON.parse(localStorage.getItem('mylist'))||[]
+            arr.splice(e.target.dataset.id,1)
+            localStorage.setItem('mylist',JSON.stringify(arr))
+            render()
+        }
+
+    })
+
+   
+</script>
+</body>
+</html>

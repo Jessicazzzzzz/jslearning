@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    /* * 重复0 - 多次 ，字符串必须是空或者n 个h*/
+    console.log(/^h*$/.test(''))//true
+    console.log(/^h*$/.test('h'))//true
+    console.log(/^h*$/.test('hh'))//true
+    console.log(/^h*$/.test('hsh'))//false
+    /*  + 重复1- 多次*/
+    console.log('===================')
+    console.log(/^h+$/.test(''))//false
+    console.log(/^h+$/.test('h'))//true
+    console.log(/^h+$/.test('hh'))//true
+    console.log(/^h+$/.test('hhs'))//false
+    /* ？ 重复次数为0-1*/
+    console.log('===================')
+    console.log(/^h?$/.test(''))//true
+    console.log(/^h?$/.test('h'))//true
+    console.log(/^h?$/.test('hh'))//false
+    console.log(/^h?$/.test('hhs'))//false
+    console.log('===================')
+    /* {n} 只能出现n 次*/
+    console.log(/^h{3}$/.test(''))//false
+    console.log(/^h{3}$/.test('h'))//false
+    console.log(/^h{3}$/.test('hhh'))//true
+    console.log(/^h{3}$/.test('hhsh'))//false
+    console.log('===================')
+    /* {n,} 出现>=n 次*/
+    console.log(/^h{3,}$/.test(''))//false
+    console.log(/^h{3,}$/.test('h'))//false
+    console.log(/^h{3,}$/.test('hhh'))//true
+    console.log(/^h{3,}$/.test('hhhh'))//true
+    console.log('===================')
+    /* {n,m} 只能出现n到m 次*/
+    console.log(/^h{3,5}$/.test(''))//false
+    console.log(/^h{3,5}$/.test('h'))//false
+    console.log(/^h{3,5}$/.test('hhh'))//true
+    console.log(/^h{3,5}$/.test('hhsh'))//false
+    console.log(/^h{3,5}$/.test('hhhh'))//true
+    console.log(/^h{3,5}$/.test('hhhhh'))//true
+    console.log('=======================')
+    /*[] 检测是否出现其中的任意字符*/
+    console.log(/[abc]/.test('abc'))//true
+    console.log(/[abc]/.test('a'))//true
+    console.log(/[abc]/.test('b'))//true
+    console.log(/[abc]/.test('c'))//true
+    console.log(/^[abc]$/.test('a'))//true
+    console.log(/^[abc]$/.test('b'))//true
+    console.log(/^[abc]$/.test('c'))//true
+    console.log(/^[a-zA-Z0-9-_]$/.test('c'))//true
+</script>
+</body>
+</html>

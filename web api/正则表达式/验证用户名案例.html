@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Title</title>
+    <style>
+        .error {
+            color: red;
+        }
+        .right {
+            color: green;
+        }
+    </style>
+</head>
+<body>
+  <input type="text">
+<span></span>
+<script>
+    /*先获取表单元素*/
+let input = document.querySelector('input')
+let span = input.nextElementSibling
+    /*当鼠标离开表单时即为blur*/
+input.addEventListener('blur',function (){
+    //test
+    // alert(11)
+    /*匹配的字符可以是大小写0-9以及-_，出现的次数为6-16*/
+    if(/^[a-zA-Z0-9-_]{6,16}$/.test(input.value)){
+        span.className = 'right'
+        span.innerHTML = '输入内容正确'
+    }else {
+        span.className = 'error'
+        span.innerHTML = '只能输入6-16字符'
+    }
+
+})
+</script>
+</body>
+</html>
